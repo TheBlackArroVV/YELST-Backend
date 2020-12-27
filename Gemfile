@@ -14,3 +14,4 @@ gem 'rake'
 gem 'roda'
 gem 'rubocop', require: false
 gem 'sequel'
+gem 'dotenv'
