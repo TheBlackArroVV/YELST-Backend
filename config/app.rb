@@ -8,6 +8,7 @@ require 'jwt'
 require 'securerandom'
 
 Unreloader.require 'database'
+Unreloader.require '../contexts/record'
 Dir[File.join(__dir__, '../contexts/**', '*.rb')].reject do |s|
   s.end_with?('routes.rb')
 end.sort.each { |file| Unreloader.require file }
@@ -16,6 +17,7 @@ class App < Roda
   plugin :hash_routes
 
   Unreloader.require('contexts/users/routes.rb') {}
+  Unreloader.require('contexts/packages/routes.rb') {}
 
   route do |r|
     r.hash_routes('')
