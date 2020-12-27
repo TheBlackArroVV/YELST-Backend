@@ -5,7 +5,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.0'
 
+gem 'bcrypt'
 gem 'dotenv'
+gem 'jwt'
 gem 'pg'
 gem 'pry'
 gem 'puma'

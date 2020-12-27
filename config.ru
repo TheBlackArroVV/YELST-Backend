@@ -6,7 +6,7 @@ require 'rack/unreloader'
 require 'rack/cors'
 
 Unreloader = Rack::Unreloader.new(subclasses: %w[Roda], reload: dev) { App }
-Unreloader.require('app.rb') { 'App' }
+Unreloader.require('config/app.rb') { 'App' }
 run(dev ? Unreloader : App.freeze.app)
 
 use Rack::Cors do
