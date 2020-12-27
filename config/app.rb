@@ -5,6 +5,7 @@ require 'pry'
 require 'json'
 require 'bcrypt'
 require 'jwt'
+require 'securerandom'
 
 Unreloader.require 'database'
 Dir[File.join(__dir__, '../contexts/**', '*.rb')].reject do |s|

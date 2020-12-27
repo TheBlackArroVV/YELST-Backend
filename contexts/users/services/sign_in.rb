@@ -1,6 +1,6 @@
 module Users
-  module Forms
-    class UserForm
+  module Services
+    class SignIn
       Result = Struct.new(:success?, :object)
 
       attr_reader :params
@@ -13,22 +13,17 @@ module Users
       end
 
       def call
-        return Result.new(false, validator.errors) unless validator.validate!
+        find_user
+        return Result.new(false, "User not found") unless user
 
-        create_user
         create_jwt
-
         Result.new(true, jwt)
       end
 
       private
 
-      def validator
-        @validator ||= ::Users::Validations::UserValidator.new(params)
-      end
-
-      def create_user
-        @user = ::User.all.insert(email: params['email'], encrypted_password: password)
+      def find_user
+        @user = ::User.all.where(email: params['email'], encrypted_password: password).to_a.first
       end
 
       def password
