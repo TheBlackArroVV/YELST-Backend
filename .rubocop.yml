@@ -1,0 +1,20 @@
+AllCops:
+  DisplayCopNames: false
+  DisplayStyleGuide: false
+  StyleGuideCopsOnly: false
+  TargetRubyVersion: 2.7.0
+
+Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - routes/events.rb
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+  EnforcedStyle: never
