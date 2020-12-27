@@ -17,6 +17,7 @@ class App < Roda
   plugin :hash_routes
 
   Unreloader.require('contexts/users/routes.rb') {}
+  Unreloader.require('contexts/packages/routes.rb') {}
 
   route do |r|
     r.hash_routes('')
