@@ -16,4 +16,5 @@ gem 'rack-unreloader'
 gem 'rake'
 gem 'roda'
 gem 'rubocop', require: false
+gem 'rubocop-sequel'
 gem 'sequel'

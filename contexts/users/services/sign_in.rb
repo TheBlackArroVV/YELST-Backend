@@ -14,7 +14,7 @@ module Users
 
       def call
         find_user
-        return Result.new(false, "User not found") unless user
+        return Result.new(false, 'User not found') unless user
 
         create_jwt
         Result.new(true, jwt)
