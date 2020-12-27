@@ -14,7 +14,7 @@ module Packages
         find_user_id
         find_or_create_package
 
-        Result.new(true, @package)
+        Result.new(true, @package[:list].delete_suffix("\"}").delete_prefix("{\""))
       end
 
       private
