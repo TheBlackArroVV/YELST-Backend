@@ -23,15 +23,15 @@ module Users
       private
 
       def find_user
-        @user = ::User.all.where(email: params['email'], encrypted_password: password).to_a.first
-      end
+        @user = ::User.all.where(email: params['email']).to_a.first
+        return true if ::BCrypt::Password.new(@user[:encrypted_password]) == params['password']
 
-      def password
-        BCrypt::Password.create(params['password'])
+        @user = nil
+        false
       end
 
       def create_jwt
-        @jwt = JWT.encode(user, ::SecureRandom.uuid, 'HS256')
+        @jwt = JWT.encode(user, user[:uuid], 'HS256')
       end
     end
   end

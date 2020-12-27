@@ -8,6 +8,7 @@ require 'jwt'
 require 'securerandom'
 
 Unreloader.require 'database'
+Unreloader.require '../contexts/record'
 Dir[File.join(__dir__, '../contexts/**', '*.rb')].reject do |s|
   s.end_with?('routes.rb')
 end.sort.each { |file| Unreloader.require file }

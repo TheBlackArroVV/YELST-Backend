@@ -1,4 +1,4 @@
-class Package < Record
+class Package #< Record
   def self.all
     db[:packages]
   end
