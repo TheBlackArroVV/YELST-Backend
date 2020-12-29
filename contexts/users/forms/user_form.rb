@@ -28,7 +28,8 @@ module Users
       end
 
       def create_user
-        @user = ::User.all.insert(email: params['email'], encrypted_password: password, uuid: ::SecureRandom.uuid)
+        ::User.all.insert(email: params['email'], encrypted_password: password, uuid: ::SecureRandom.uuid)
+        @user = User.all.where(email: params['email']).to_a.first
       end
 
       def password
@@ -36,7 +37,7 @@ module Users
       end
 
       def create_jwt
-        @jwt = JWT.encode(user, user.uuid, 'HS256')
+        @jwt = JWT.encode(user, user[:uuid], 'HS256')
       end
     end
   end
