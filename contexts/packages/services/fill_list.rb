@@ -27,7 +27,7 @@ module Packages
       def find_or_create_package
         @package = Package.all.where(user_id: user_id)
 
-        return if @package
+        return unless @package.to_a.empty?
 
         Package.all.insert(list: [], user_id: user_id)
       end
