@@ -18,7 +18,7 @@ class App
         result = ::Packages::Services::GetList.new(
           current_user: r.get_header('HTTP_AUTHORIZATION').delete_prefix('Bearer ')
         ).call
-        response.status = result.success? ? 201 : 422
+        response.status = result.success? ? 200 : 422
         { result: result.object }.to_json
       end
     end

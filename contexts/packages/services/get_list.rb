@@ -28,7 +28,7 @@ module Packages
 
         return if @package
 
-        Package.all.insert(list: [], user_id: user_id)
+        Package.all.insert(list: [], user_id: user_id, hostname: params[:hostname])
       end
     end
   end

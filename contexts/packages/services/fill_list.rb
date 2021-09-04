@@ -29,7 +29,7 @@ module Packages
 
         return unless @package.to_a.empty?
 
-        Package.all.insert(list: [], user_id: user_id)
+        Package.all.insert(list: [], user_id: user_id, hostname: params[:hostname])
       end
 
       def set_list
