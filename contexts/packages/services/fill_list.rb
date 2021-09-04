@@ -25,11 +25,11 @@ module Packages
       end
 
       def find_or_create_package
-        @package = Package.all.where(user_id: user_id)
+        @package = Package.all.where(user_id: user_id, hostname: params['hostname'])
 
         return unless @package.to_a.empty?
 
-        Package.all.insert(list: [], user_id: user_id, hostname: params[:hostname])
+        @package = Package.all.where(id: Package.all.insert(list: [], user_id: user_id, hostname: params['hostname']))
       end
 
       def set_list

@@ -14,7 +14,7 @@ module Packages
         find_user_id
         find_or_create_package
 
-        Result.new(true, @package[:list].delete_suffix("\"}").delete_prefix("{\""))
+        Result.new(true, @package.first[:list]&.delete_suffix("\"}")&.delete_prefix("{\""))
       end
 
       private
@@ -24,11 +24,11 @@ module Packages
       end
 
       def find_or_create_package
-        @package = Package.all.where(user_id: user_id).to_a.first
+        @package = Package.all.where(user_id: user_id, hostname: params['hostname'])
 
-        return if @package
+        return unless @package.to_a.empty?
 
-        Package.all.insert(list: [], user_id: user_id, hostname: params[:hostname])
+        @package = Package.all.where(id: Package.all.insert(list: [], user_id: user_id, hostname: params['hostname']))
       end
     end
   end

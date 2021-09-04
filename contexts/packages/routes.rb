@@ -15,8 +15,9 @@ class App
 
     r.on 'get_list' do
       r.get do
+        params = JSON.parse(r.body.read)
         result = ::Packages::Services::GetList.new(
-          current_user: r.get_header('HTTP_AUTHORIZATION').delete_prefix('Bearer ')
+          params.merge(current_user: r.get_header('HTTP_AUTHORIZATION').delete_prefix('Bearer '))
         ).call
         response.status = result.success? ? 200 : 422
         { result: result.object }.to_json
